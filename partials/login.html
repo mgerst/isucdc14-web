@@ -1,0 +1,21 @@
+<form name="loginForm" class="form-horizontal" ng-submit="login(credentials)" novalidate>
+	<div class="control-group">
+		<label class="control-label" for="username">Username:</label>
+		<div class="controls">
+			<input type="text" id="username" ng-model="credentials.username" />
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label" for="password">Password:</label>
+		<div class="controls">
+			<input type="password" id="password" ng-model="credentials.password" />
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="btn btn-primary">Login</button>
+		</div>
+	</div>
+</form>

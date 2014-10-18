@@ -1,0 +1,11 @@
+<div class="span6 offset3 well" ng-repeat="case in cases">
+	<img src="img/{{case.pic}}" style="width:100px; float:right;" />
+	<h2>{{case.client}}</h2>
+	<p>{{case.description}}</p>
+	<h1>{{case.outcome}}</h1>
+</div>
+<div class="span6 offset3 well" ng-hide="cases.length">
+	<img src="img/open.jpg" style="width:100px; float:right;" />
+	<h2>No Cases</h2>
+	<p>There are no cases you can view.</p>
+</div>

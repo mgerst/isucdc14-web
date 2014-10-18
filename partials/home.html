@@ -1,0 +1,8 @@
+<div class="span6 offset3 well" ng-repeat="lawyer in lawyers">
+	<img src="img/{{lawyer.image}}.jpg" style="width:100px; float:right" />
+	<h2>{{lawyer.fname + ' ' + lawyer.lname}}</h2>
+	<p>{{lawyer.bio}}</p>
+</div>	
+<div class="span6 offset3 well" ng-hide="lawyers.length">
+	<h2>No Lawyers</h2>
+</div>

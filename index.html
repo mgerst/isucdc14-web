@@ -6,7 +6,7 @@
         <link href='css/bootstrap-responsive.min.css' rel='stylesheet' type='text/css'>
 
     </head>
-    <body>
+    <body ng-controller="ApplicationController">
         <div class="container-fluid">
             <div class="row-fluid">
                 <header class="">
@@ -17,27 +17,24 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <ul class="nav">
-                        <li class='nav-button active'><a href="">Home</a></li>
-                        <li class='nav-button'><a href="candc.html">Clients and Cases</a></li>
-                        <li class='nav-button'><a href="casefiles/files.html">Casefiles</a></li>
+                        <li class='nav-button' ng-class="{active:isActive('/')}"><a href="#/">Home</a></li>
+                        <li class='nav-button' ng-class="{active:isActive('/login')}" ng-hide="currentUser"><a href="#/login">Login</a></li>
+                        <li class='nav-button' ng-class="{active:isActive('/cases')}" ng-show="currentUser"><a href="#/cases">Clients and Cases</a></li>
+                        <li class='nav-button' ng-class="{active:isActive('/addcase')}" ng-show="currentUser"><a href="#/addcase">Add case</a></li>
+                        <li class='nav-button' ng-class="{active:isActive('/casefiles')}" ng-show="currentUser"><a href="#/casefiles">Casefiles</a></li>
+                        <li class='nav-button' ng-show="currentUser"><a href="https://help.team8.isucdc.com/">Support Chat</a></li>
                     </ul>
+
+                    <p class="navbar-text pull-right" ng-show="currentUser">Welcome, {{ currentUser.display}}. <a href="#/logout">Logout</a></p>
                 </div>
             </div>
 
-            <div ng-app="" ng-controller="lawyerList">
-                <ul>
-                    <div class="span6 offset3 well"ng-repeat="lawyer in lawyers">
-                        <img src="img/{{lawyer.image}}.jpg" style="width:100px; float:right" />
-                        <h2>{{lawyer.fname + ' ' + lawyer.lname}}</h2>
-                        <p>{{lawyer.bio}}</p>
-                    </div>
-                </ul>
-            </div>
+            <div ng-view></div>
         </div>
-        <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js'></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js'></script>
+        <script src='js/angular-route.min.js'></script>
         <script src='js/jquery.min.js' type='text/javascript'></script>
         <script src='js/bootstrap.min.js' type='text/javascript'></script>
-        <script src='js/lawyer.js' type='text/javascript'></script>
         <script src='js/app.js'></script>
     </body>
 </html>

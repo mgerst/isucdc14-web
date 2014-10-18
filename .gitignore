@@ -1,0 +1,4 @@
+backup.sql
+.vagrant/
+Vagrantfile
+config.php

@@ -1,0 +1,52 @@
+<form name="createForm" class="form-horizontal" ng-submit="create(case)" novalidate>
+	<div class="control-group">
+		<label class="control-label" for="name">Case Name:</label>
+		<div class="controls">
+			<input type="text" id="name" ng-model="case.name" />
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label" for="description">Description:</label>
+		<div class="controls">
+			<textarea id="description" ng-model="case.description"></textarea>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label" for="status">Case Status:</label>
+		<div class="controls">
+			<input type="text" id="status" ng-model="case.status" />
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label" for="pic">Case Image:</label>
+		<div class="controls">
+			<select id="pic" ng-model="case.pic">
+				<option>---</option>
+				<option value="yes">Yes</option>
+				<option value="no">No</option>
+				<option value="open">Open</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label" for="type">Case Type:</label>
+		<div class="controls">
+			<select id="type" ng-model="case.type">
+				<option>---</option>
+				<option value="Negligence">Negligence</option>
+				<option value="TaxEvasion">Tax Evasion</option>
+				<option value="Divorce">Divorce</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="btn btn-success">Add Case</button>
+		</div>
+	</div>
+</form>

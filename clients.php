@@ -1,13 +1,32 @@
 <?php
-$con=mysqli_connect("localhost","root","cdc", "site");
+session_start();
+require __DIR__."/database.php";
+require __DIR__."/ldap.php";
+$con=get_db_connection();
 
 if(mysqli_connect_errno()) {
-	echo "Failed to connect to MySQL: mysqli_connect(\"10.0.55.18\",\"root\",\"cdc\",\"site\"); --> " . mysqli_connect_error();
+    if (DEBUG) {
+        die('{"error": "Error connecting to the database", "msg": "' . mysqli_connect_error() . '"}');
+    } else {
+        die('{"error": "Could  not connect to database"}');
+    }
 }
-$sanitized_query = $_GET["query"];
-$result = mysqli_query($con,$sanitized_query);
+
+if (!(isset($_SESSION["username"])))
+	die('{"error": "Need to be logged in"}');
+$roles = get_roles($_SESSION["username"]);
+
+$query = "SELECT client, description, pic, outcome FROM candc WHERE";
+foreach ($roles as $role) {
+ 	$query .= " type=\"" . $role . "\" OR";
+}
+$query = substr($query, 0, strlen($query) - 3);
+$query .= ";";
+
+$results = $con->query($query);
+
 $toreturn = "[";
-while ($row = mysqli_fetch_array($result)) {
+while ($row = mysqli_fetch_array($results)) {
 	if ($toreturn != "[") {$toreturn .= ",";}
 	$toreturn .= '{"client":"' . $row["client"] . '",';
 	$toreturn .= '"description":"' . $row["description"] . '",';
@@ -17,4 +36,4 @@ while ($row = mysqli_fetch_array($result)) {
 $toreturn .= ']';
 echo $toreturn . " ";
 mysqli_close($con);
-?>
+
